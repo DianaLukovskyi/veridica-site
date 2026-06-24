@@ -18,9 +18,16 @@ function pageLangSuffix(){
 function fixLangLinks(){
   const suffix=pageLangSuffix();
   if(!suffix && !LANG_CODES.some((l)=>location.pathname.endsWith(l+".html"))) return;
+  const currentFile=(location.pathname.split("/").pop()||"ua.html").toLowerCase();
   document.querySelectorAll(".langs a").forEach((a)=>{
     const code=a.textContent.trim().toLowerCase();
-    if(LANG_CODES.includes(code)) a.href=code+suffix;
+    if(LANG_CODES.includes(code)){
+      a.href=code+suffix;
+      if(a.getAttribute("href").toLowerCase()===currentFile){
+        a.setAttribute("aria-current","page");
+        a.addEventListener("click",(e)=>e.preventDefault());
+      }
+    }
   });
 }
 
