@@ -4,6 +4,26 @@ function revealOnScroll(){revealElements.forEach((el)=>{if(el.getBoundingClientR
 window.addEventListener("load",()=>{revealOnScroll();const loader=document.querySelector(".page-loader");if(loader){setTimeout(()=>loader.classList.add("hide"),500);}});
 window.addEventListener("scroll", revealOnScroll);
 
+const LANG_CODES=["ua","ru","en","lt","he"];
+
+function pageLangSuffix(){
+  const file=(location.pathname.split("/").pop()||"ua.html").toLowerCase();
+  for(const lang of LANG_CODES){
+    if(file===lang+".html") return "";
+    if(file.startsWith(lang+"-")) return file.slice(lang.length);
+  }
+  return "";
+}
+
+function fixLangLinks(){
+  const suffix=pageLangSuffix();
+  if(!suffix && !LANG_CODES.some((l)=>location.pathname.endsWith(l+".html"))) return;
+  document.querySelectorAll(".langs a").forEach((a)=>{
+    const code=a.textContent.trim().toLowerCase();
+    if(LANG_CODES.includes(code)) a.href=code+suffix;
+  });
+}
+
 const header=document.querySelector(".header");
 const nav=header&&header.querySelector(".nav");
 const headerRight=header&&header.querySelector(".header-right");
@@ -38,7 +58,10 @@ if(header&&nav&&headerRight){
     header.appendChild(btn);
   }
 
+  fixLangLinks();
+
   function closeMenu(){
+    if(drawer.parentNode!==header) header.insertBefore(drawer,btn);
     header.classList.remove("menu-open");
     document.body.classList.remove("menu-open");
     btn.setAttribute("aria-expanded","false");
@@ -46,6 +69,8 @@ if(header&&nav&&headerRight){
   }
 
   function openMenu(){
+    document.body.appendChild(backdrop);
+    document.body.appendChild(drawer);
     header.classList.add("menu-open");
     document.body.classList.add("menu-open");
     btn.setAttribute("aria-expanded","true");
@@ -53,12 +78,17 @@ if(header&&nav&&headerRight){
   }
 
   btn.addEventListener("click",(e)=>{
+    e.preventDefault();
     e.stopPropagation();
     if(document.body.classList.contains("menu-open")) closeMenu();
     else openMenu();
   });
 
   backdrop.addEventListener("click",closeMenu);
+
+  drawer.addEventListener("click",(e)=>{
+    if(e.target.closest("a")) closeMenu();
+  });
 
   document.addEventListener("keydown",(e)=>{
     if(e.key==="Escape"&&document.body.classList.contains("menu-open")) closeMenu();
