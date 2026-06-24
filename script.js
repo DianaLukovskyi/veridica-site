@@ -6,28 +6,62 @@ window.addEventListener("scroll", revealOnScroll);
 
 const header=document.querySelector(".header");
 const nav=header&&header.querySelector(".nav");
-if(header&&nav&&!header.querySelector(".menu-toggle")){
-  const btn=document.createElement("button");
-  btn.type="button";
-  btn.className="menu-toggle";
-  btn.setAttribute("aria-label","Menu");
-  btn.setAttribute("aria-expanded","false");
-  btn.textContent="☰";
-  nav.before(btn);
+const headerRight=header&&header.querySelector(".header-right");
+if(header&&nav&&headerRight){
+  let drawer=header.querySelector(".mobile-drawer");
+  let backdrop=document.querySelector(".menu-backdrop");
+  let btn=header.querySelector(".menu-toggle");
+
+  if(!drawer){
+    drawer=document.createElement("div");
+    drawer.className="mobile-drawer";
+    header.insertBefore(drawer,nav);
+    drawer.appendChild(nav);
+    drawer.appendChild(headerRight);
+  }
+
+  if(!backdrop){
+    backdrop=document.createElement("button");
+    backdrop.type="button";
+    backdrop.className="menu-backdrop";
+    backdrop.setAttribute("aria-label","Close menu");
+    document.body.appendChild(backdrop);
+  }
+
+  if(!btn){
+    btn=document.createElement("button");
+    btn.type="button";
+    btn.className="menu-toggle";
+    btn.setAttribute("aria-label","Menu");
+    btn.setAttribute("aria-expanded","false");
+    btn.textContent="☰";
+    header.appendChild(btn);
+  }
+
+  function closeMenu(){
+    header.classList.remove("menu-open");
+    document.body.classList.remove("menu-open");
+    btn.setAttribute("aria-expanded","false");
+    btn.textContent="☰";
+  }
+
+  function openMenu(){
+    header.classList.add("menu-open");
+    document.body.classList.add("menu-open");
+    btn.setAttribute("aria-expanded","true");
+    btn.textContent="✕";
+  }
+
   btn.addEventListener("click",(e)=>{
     e.stopPropagation();
-    const open=header.classList.toggle("menu-open");
-    document.body.classList.toggle("menu-open",open);
-    btn.setAttribute("aria-expanded",open?"true":"false");
-    btn.textContent=open?"✕":"☰";
+    if(document.body.classList.contains("menu-open")) closeMenu();
+    else openMenu();
   });
-  document.addEventListener("click",(e)=>{
-    if(!header.contains(e.target)){
-      header.classList.remove("menu-open");
-      document.body.classList.remove("menu-open");
-      btn.setAttribute("aria-expanded","false");
-      btn.textContent="☰";
-    }
+
+  backdrop.addEventListener("click",closeMenu);
+
+  document.addEventListener("keydown",(e)=>{
+    if(e.key==="Escape"&&document.body.classList.contains("menu-open")) closeMenu();
   });
 }
 

@@ -517,7 +517,7 @@ body[dir="rtl"] .header-right {
 body[dir="rtl"] .brand {
   text-align: right;
 }
-@media (max-width: 1500px) {
+@media (max-width: 1500px) and (min-width: 901px) {
   .header {
     grid-template-columns: 1fr;
     gap: 18px;
@@ -536,14 +536,16 @@ body[dir="rtl"] .brand {
   .hero {
     padding-top: 300px;
   }
+  section.content {
+    padding-top: 280px;
+  }
+}
+@media (max-width: 1500px) {
   .values {
     grid-template-columns: 1fr 1fr;
   }
   .grid-links {
     grid-template-columns: 1fr 1fr;
-  }
-  section.content {
-    padding-top: 280px;
   }
   .about-lux {
     grid-template-columns: minmax(220px, 300px) 1fr;
@@ -561,160 +563,186 @@ body[dir="rtl"] .brand {
     line-height: 1.85;
   }
 }
+.menu-backdrop {
+  display: none;
+}
+@media (min-width: 901px) {
+  .mobile-drawer {
+    display: contents;
+  }
+  .menu-backdrop {
+    display: none !important;
+  }
+}
 @media (max-width: 900px) {
   .header {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    grid-template-areas: "toggle brand contact";
-    gap: 8px 10px;
-    padding: 10px 3.5%;
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    min-height: auto;
-  }
-  .menu-toggle {
-    display: block;
-    grid-area: toggle;
-    justify-self: start;
-    align-self: center;
-    background: transparent;
-    border: 1px solid rgba(212, 162, 76, 0.55);
-    color: var(--gold);
-    font-size: 18px;
-    line-height: 1;
-    padding: 8px 11px;
-    cursor: pointer;
-    border-radius: 8px;
-    font-family: inherit;
-    min-width: 42px;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 14px;
+    height: 72px;
+    max-height: 80px;
+    min-height: unset;
   }
   .brand {
-    grid-area: brand;
+    flex: 1;
+    min-width: 0;
     flex-direction: row;
-    text-align: left;
+    align-items: center;
     gap: 10px;
     justify-content: flex-start;
+    text-align: left;
     width: auto;
-    max-width: 100%;
-    min-width: 0;
+    max-width: calc(100% - 46px);
   }
   .brand h1 {
-    font-size: 22px;
-    letter-spacing: 5px;
+    font-size: 20px;
+    letter-spacing: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .brand p {
     display: none;
   }
   .logo {
-    width: 48px;
-    height: 48px;
-    font-size: 32px;
+    width: 40px;
+    height: 40px;
+    font-size: 26px;
     flex-shrink: 0;
   }
-  .logo:after {
-    font-size: 11px;
-    right: 6px;
-    bottom: 4px;
+  .logo:before {
+    inset: 5px;
   }
-  .nav {
+  .logo:after {
+    font-size: 9px;
+    right: 4px;
+    bottom: 3px;
+  }
+  .menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    order: 3;
+    background: transparent;
+    border: 1px solid rgba(212, 162, 76, 0.45);
+    color: var(--gold);
+    font-size: 16px;
+    line-height: 1;
+    padding: 0;
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-family: inherit;
+  }
+  .mobile-drawer {
     display: none;
-    gap: 14px;
+  }
+  .menu-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 2000;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  body.menu-open .menu-backdrop {
+    display: block;
+  }
+  body.menu-open .mobile-drawer {
+    display: flex;
     flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: min(300px, 88vw);
+    height: 100dvh;
+    background: linear-gradient(180deg, #070809 0%, #050607 100%);
+    border-right: 1px solid var(--line);
+    z-index: 2001;
+    padding: 88px 22px 28px;
+    overflow-y: auto;
+    gap: 0;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.45);
+    animation: drawerIn 0.28s ease;
+  }
+  @keyframes drawerIn {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  body.menu-open .nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
     width: 100%;
-    padding: 6px 0 2px;
+    padding: 0;
     flex-wrap: nowrap;
     white-space: normal;
   }
-  .header.menu-open {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    min-height: 100vh;
-    min-height: 100dvh;
-    overflow-y: auto;
-    z-index: 2000;
-    background: #050607;
-    padding: 20px 5% 36px;
-    gap: 16px;
-  }
-  .header.menu-open .menu-toggle {
-    position: absolute;
-    top: 14px;
-    left: 14px;
-    margin: 0;
-  }
-  .header.menu-open .brand {
-    flex-direction: column;
-    text-align: center;
-    margin-top: 36px;
-  }
-  .header.menu-open .brand p {
-    display: block;
-    font-size: 9px;
-    letter-spacing: 1px;
-    padding: 0 8px;
-  }
-  .header.menu-open .nav {
-    display: flex;
-    margin-top: 4px;
-  }
-  .header.menu-open .header-right {
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    width: 100%;
-  }
-  .nav a {
+  body.menu-open .nav a {
     font-size: 15px;
     letter-spacing: 1px;
-    padding: 2px 0;
+    padding: 14px 0;
+    width: 100%;
+    border-bottom: 1px solid rgba(212, 162, 76, 0.12);
   }
-  .header-right {
-    grid-area: contact;
+  body.menu-open .nav a:after {
+    display: none;
+  }
+  body.menu-open .header-right {
+    display: flex;
     flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: flex-end;
-    gap: 4px;
-    width: auto;
+    align-items: flex-start;
+    gap: 14px;
+    width: 100%;
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
     min-width: 0;
   }
-  .city-phone {
-    flex-shrink: 0;
+  body.menu-open .city-phone a {
+    font-size: 15px;
   }
-  .city-phone a {
-    font-size: 11px;
-    letter-spacing: 0;
+  body.menu-open .langs {
+    gap: 14px;
   }
-  .langs {
-    flex-shrink: 0;
-    gap: 7px;
+  body.menu-open .langs a {
+    font-size: 14px;
   }
-  .langs a {
-    font-size: 11px;
-  }
-  body[dir="rtl"] .header:not(.menu-open) {
-    grid-template-areas: "contact brand toggle";
-  }
-  body[dir="rtl"] .header:not(.menu-open) .brand {
+  body[dir="rtl"] .brand {
     flex-direction: row-reverse;
     text-align: right;
     justify-content: flex-end;
   }
-  body[dir="rtl"] .header:not(.menu-open) .header-right {
-    align-items: flex-start;
-  }
-  body[dir="rtl"] .header:not(.menu-open) .menu-toggle {
-    justify-self: end;
-  }
-  body[dir="rtl"] .header.menu-open .menu-toggle {
+  body[dir="rtl"].menu-open .mobile-drawer {
     left: auto;
-    right: 14px;
+    right: 0;
+    border-right: none;
+    border-left: 1px solid var(--line);
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.45);
+    animation: drawerInRtl 0.28s ease;
+  }
+  @keyframes drawerInRtl {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
   }
   .hero {
-    padding: 120px 7% 70px;
+    padding: 96px 7% 70px;
   }
   .hero-inner {
     width: 100%;
@@ -752,7 +780,7 @@ body[dir="rtl"] .brand {
     font-size: 44px;
   }
   section.content {
-    padding: 150px 7% 70px;
+    padding: 110px 7% 70px;
   }
   .about-lux {
     grid-template-columns: minmax(150px, 220px) 1fr;
@@ -778,26 +806,36 @@ body[dir="rtl"] .brand {
 }
 
 @media (max-width: 400px) {
-  .city-phone a {
-    font-size: 10px;
+  .header {
+    height: 68px;
+    max-height: 72px;
+    padding: 8px 12px;
   }
   .brand h1 {
-    font-size: 18px;
-    letter-spacing: 4px;
+    font-size: 17px;
+    letter-spacing: 3px;
   }
   .logo {
-    width: 42px;
-    height: 42px;
-    font-size: 28px;
+    width: 36px;
+    height: 36px;
+    font-size: 22px;
   }
-  .langs a {
-    font-size: 10px;
+  .menu-toggle {
+    width: 36px;
+    height: 36px;
+    font-size: 15px;
+  }
+  body.menu-open .city-phone a {
+    font-size: 14px;
   }
   .hero h2 {
     font-size: 32px;
   }
   .hero {
-    padding: 112px 6% 64px;
+    padding: 88px 6% 64px;
+  }
+  section.content {
+    padding: 100px 6% 64px;
   }
 }
 
@@ -858,7 +896,7 @@ html[lang="he"] input[type="tel"] {
   text-align: right;
 }
 /* FIX HEADER WIDTH ON ALL LANGUAGES */
-
+@media (min-width: 901px) {
 .header {
   padding-left: 3%;
   padding-right: 3%;
@@ -886,9 +924,10 @@ html[lang="he"] input[type="tel"] {
 .city-phone {
   font-size: 14px;
 }
+}
 
 /* для средних экранов — меню переносится красиво */
-@media (max-width: 1350px) {
+@media (max-width: 1350px) and (min-width: 901px) {
   .header {
     grid-template-columns: 1fr;
     text-align: center;
