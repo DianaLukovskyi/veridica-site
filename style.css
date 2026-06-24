@@ -577,18 +577,19 @@ body[dir="rtl"] .brand {
 @media (max-width: 900px) {
   .header {
     display: grid;
-    grid-template-columns: 42px 1fr 42px;
-    grid-template-areas: "side brand menu";
+    grid-template-columns: 40px 1fr 40px;
     align-items: center;
     gap: 8px;
-    padding: 10px 12px;
-    height: 72px;
-    max-height: 80px;
+    padding: 8px 12px;
+    height: 68px;
+    max-height: 72px;
     min-height: unset;
   }
   .brand {
-    grid-area: brand;
+    grid-column: 2;
     justify-self: center;
+    flex: unset;
+    min-width: 0;
     flex-direction: row;
     align-items: center;
     gap: 10px;
@@ -596,27 +597,26 @@ body[dir="rtl"] .brand {
     text-align: center;
     width: auto;
     max-width: 100%;
-    min-width: 0;
   }
   .brand h1 {
-    font-size: 20px;
-    letter-spacing: 5px;
+    font-size: 19px;
+    letter-spacing: 4px;
     white-space: nowrap;
   }
   .brand p {
     display: none;
   }
   .logo {
-    width: 44px;
-    height: 44px;
-    font-size: 28px;
+    width: 38px;
+    height: 38px;
+    font-size: 24px;
     flex-shrink: 0;
   }
   .logo:before {
     inset: 5px;
   }
   .logo:after {
-    font-size: 9px;
+    font-size: 8px;
     right: 4px;
     bottom: 3px;
   }
@@ -624,16 +624,17 @@ body[dir="rtl"] .brand {
     display: flex;
     align-items: center;
     justify-content: center;
-    grid-area: menu;
+    grid-column: 3;
     justify-self: end;
+    flex-shrink: 0;
     background: transparent;
     border: 1px solid rgba(212, 162, 76, 0.45);
     color: var(--gold);
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1;
     padding: 0;
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
     cursor: pointer;
     border-radius: 8px;
     font-family: inherit;
@@ -719,10 +720,13 @@ body[dir="rtl"] .brand {
   body.menu-open .langs a {
     font-size: 14px;
   }
-  body[dir="rtl"] .header {
-    grid-template-areas: "menu brand side";
+  body[dir="rtl"] .brand {
+    flex-direction: row-reverse;
+    text-align: center;
+    justify-content: center;
   }
   body[dir="rtl"] .menu-toggle {
+    grid-column: 1;
     justify-self: start;
   }
   body[dir="rtl"].menu-open .mobile-drawer {
@@ -742,7 +746,7 @@ body[dir="rtl"] .brand {
     }
   }
   .hero {
-    padding: 96px 7% 70px;
+    padding: 88px 7% 70px;
   }
   .hero-inner {
     width: 100%;
@@ -780,7 +784,7 @@ body[dir="rtl"] .brand {
     font-size: 44px;
   }
   section.content {
-    padding: 110px 7% 70px;
+    padding: 100px 7% 70px;
   }
   .about-lux {
     grid-template-columns: minmax(150px, 220px) 1fr;
@@ -807,24 +811,24 @@ body[dir="rtl"] .brand {
 
 @media (max-width: 400px) {
   .header {
-    height: 68px;
-    max-height: 72px;
+    height: 64px;
+    max-height: 68px;
     padding: 8px 10px;
-    grid-template-columns: 38px 1fr 38px;
+    grid-template-columns: 36px 1fr 36px;
   }
   .brand h1 {
-    font-size: 17px;
-    letter-spacing: 4px;
+    font-size: 16px;
+    letter-spacing: 3px;
   }
   .logo {
-    width: 38px;
-    height: 38px;
-    font-size: 24px;
+    width: 34px;
+    height: 34px;
+    font-size: 22px;
   }
   .menu-toggle {
     width: 34px;
     height: 34px;
-    font-size: 15px;
+    font-size: 14px;
   }
   body.menu-open .city-phone a {
     font-size: 14px;
@@ -833,10 +837,10 @@ body[dir="rtl"] .brand {
     font-size: 32px;
   }
   .hero {
-    padding: 88px 6% 64px;
+    padding: 82px 6% 64px;
   }
   section.content {
-    padding: 100px 6% 64px;
+    padding: 92px 6% 64px;
   }
 }
 
