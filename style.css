@@ -576,41 +576,40 @@ body[dir="rtl"] .brand {
 }
 @media (max-width: 900px) {
   .header {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 42px 1fr 42px;
+    grid-template-areas: "side brand menu";
     align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    padding: 10px 14px;
+    gap: 8px;
+    padding: 10px 12px;
     height: 72px;
     max-height: 80px;
     min-height: unset;
   }
   .brand {
-    flex: 1;
-    min-width: 0;
+    grid-area: brand;
+    justify-self: center;
     flex-direction: row;
     align-items: center;
     gap: 10px;
-    justify-content: flex-start;
-    text-align: left;
+    justify-content: center;
+    text-align: center;
     width: auto;
-    max-width: calc(100% - 46px);
+    max-width: 100%;
+    min-width: 0;
   }
   .brand h1 {
     font-size: 20px;
-    letter-spacing: 4px;
+    letter-spacing: 5px;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
   .brand p {
     display: none;
   }
   .logo {
-    width: 40px;
-    height: 40px;
-    font-size: 26px;
+    width: 44px;
+    height: 44px;
+    font-size: 28px;
     flex-shrink: 0;
   }
   .logo:before {
@@ -625,8 +624,8 @@ body[dir="rtl"] .brand {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
-    order: 3;
+    grid-area: menu;
+    justify-self: end;
     background: transparent;
     border: 1px solid rgba(212, 162, 76, 0.45);
     color: var(--gold);
@@ -720,10 +719,11 @@ body[dir="rtl"] .brand {
   body.menu-open .langs a {
     font-size: 14px;
   }
-  body[dir="rtl"] .brand {
-    flex-direction: row-reverse;
-    text-align: right;
-    justify-content: flex-end;
+  body[dir="rtl"] .header {
+    grid-template-areas: "menu brand side";
+  }
+  body[dir="rtl"] .menu-toggle {
+    justify-self: start;
   }
   body[dir="rtl"].menu-open .mobile-drawer {
     left: auto;
@@ -809,20 +809,21 @@ body[dir="rtl"] .brand {
   .header {
     height: 68px;
     max-height: 72px;
-    padding: 8px 12px;
+    padding: 8px 10px;
+    grid-template-columns: 38px 1fr 38px;
   }
   .brand h1 {
     font-size: 17px;
-    letter-spacing: 3px;
+    letter-spacing: 4px;
   }
   .logo {
-    width: 36px;
-    height: 36px;
-    font-size: 22px;
+    width: 38px;
+    height: 38px;
+    font-size: 24px;
   }
   .menu-toggle {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
     font-size: 15px;
   }
   body.menu-open .city-phone a {
