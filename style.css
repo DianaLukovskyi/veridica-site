@@ -375,16 +375,15 @@ section.content {
 }
 .about-lux {
   display: grid;
-  grid-template-columns: 420px 1fr;
-  gap: 80px;
-  align-items: center;
+  grid-template-columns: minmax(280px, 420px) 1fr;
+  gap: 60px;
+  align-items: start;
 }
 .about-photo {
   height: 560px;
   max-width: 420px;
   width: 100%;
-  background: url("./diana.jpg") center top/contain no-repeat;
-  background-color: #050607;
+  background: url("./diana.jpg") center 18% / cover no-repeat;
   border: 1px solid var(--line);
   border-radius: 16px;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
@@ -394,6 +393,7 @@ section.content {
   font-size: 70px;
   color: #eadcc4;
   margin-bottom: 18px;
+  line-height: 1.05;
 }
 .about-text h3 {
   color: var(--gold);
@@ -511,13 +511,23 @@ body[dir="rtl"] .text-block ul {
   .grid-links {
     grid-template-columns: 1fr 1fr;
   }
+  section.content {
+    padding-top: 280px;
+  }
   .about-lux {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(220px, 300px) 1fr;
+    gap: 36px;
   }
   .about-photo {
-    height: 520px;
-    max-width: 420px;
-    margin: auto;
+    height: 460px;
+    max-width: 300px;
+  }
+  .about-text h2 {
+    font-size: 52px;
+  }
+  .about-text p {
+    font-size: 18px;
+    line-height: 1.85;
   }
 }
 @media (max-width: 900px) {
@@ -555,7 +565,47 @@ body[dir="rtl"] .text-block ul {
     font-size: 44px;
   }
   section.content {
-    padding: 90px 7%;
+    padding: 340px 7% 70px;
+  }
+  .about-lux {
+    grid-template-columns: minmax(150px, 220px) 1fr;
+    gap: 22px;
+  }
+  .about-photo {
+    height: 340px;
+    max-width: 220px;
+    border-radius: 12px;
+  }
+  .about-text h2 {
+    font-size: 34px;
+  }
+  .about-text h3 {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+  .about-text p {
+    font-size: 15px;
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+}
+
+@media (max-width: 520px) {
+  .about-lux {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .about-photo {
+    height: 380px;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+  .about-text h2 {
+    font-size: 40px;
+    text-align: center;
+  }
+  .about-text h3 {
+    text-align: center;
   }
 }
 .consultation-form {
@@ -642,5 +692,9 @@ html[lang="he"] input[type="tel"] {
   .nav {
     flex-wrap: wrap;
     gap: 24px;
+  }
+
+  section.content {
+    padding-top: 300px;
   }
 }
