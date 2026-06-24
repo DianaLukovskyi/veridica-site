@@ -625,8 +625,8 @@ body[dir="rtl"] .brand {
     display: flex;
     align-items: center;
     justify-content: center;
-    grid-column: 3;
-    justify-self: end;
+    grid-column: 1;
+    justify-self: start;
     flex-shrink: 0;
     background: transparent;
     border: 1px solid rgba(212, 162, 76, 0.45);
@@ -702,9 +702,13 @@ body[dir="rtl"] .brand {
     white-space: normal;
   }
   body.menu-open .nav a {
-    font-size: 15px;
-    letter-spacing: 1px;
-    padding: 14px 0;
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    text-transform: none;
+    padding: 11px 0;
+    line-height: 1.35;
     width: 100%;
     border-bottom: 1px solid rgba(212, 162, 76, 0.12);
     cursor: pointer;
@@ -734,21 +738,28 @@ body[dir="rtl"] .brand {
     -webkit-tap-highlight-color: rgba(212, 162, 76, 0.25);
   }
   body.menu-open .langs {
-    gap: 10px;
-    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
   }
   body.menu-open .langs a {
-    font-size: 14px;
+    font-size: 12px;
+    flex: 1 1 0;
+    min-width: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 44px;
-    min-height: 44px;
-    padding: 0 12px;
+    min-height: 38px;
+    padding: 0 4px;
     border: 1px solid rgba(212, 162, 76, 0.35);
     border-radius: 6px;
     cursor: pointer;
     -webkit-tap-highlight-color: rgba(212, 162, 76, 0.25);
+    white-space: nowrap;
   }
   body[dir="rtl"] .brand {
     flex-direction: row-reverse;
@@ -756,8 +767,8 @@ body[dir="rtl"] .brand {
     justify-content: center;
   }
   body[dir="rtl"] .menu-toggle {
-    grid-column: 1;
-    justify-self: start;
+    grid-column: 3;
+    justify-self: end;
   }
   body[dir="rtl"].menu-open .mobile-drawer {
     left: auto;
@@ -811,7 +822,40 @@ body[dir="rtl"] .brand {
   }
   .section-title,
   .text-block h1 {
-    font-size: 44px;
+    font-size: 32px;
+    letter-spacing: 2px;
+    margin-bottom: 36px;
+  }
+  .text-block h2 {
+    font-size: 24px;
+    margin: 32px 0 14px;
+    letter-spacing: 1px;
+  }
+  .text-block h3 {
+    font-size: 20px;
+    margin: 24px 0 12px;
+  }
+  .text-block p,
+  .text-block li {
+    font-size: 16px;
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+  .grid-links a {
+    font-size: 15px;
+  }
+  .link-card {
+    padding: 22px;
+    min-height: auto;
+  }
+  .link-card h3 {
+    font-size: 21px;
+    margin-bottom: 10px;
+    line-height: 1.25;
+  }
+  .link-card p {
+    font-size: 14px;
+    line-height: 1.6;
   }
   section.content {
     padding: 100px 7% 70px;
@@ -871,6 +915,16 @@ body[dir="rtl"] .brand {
   }
   section.content {
     padding: 92px 6% 64px;
+  }
+  .section-title,
+  .text-block h1 {
+    font-size: 28px;
+  }
+  .text-block h2 {
+    font-size: 21px;
+  }
+  .link-card h3 {
+    font-size: 19px;
   }
 }
 
