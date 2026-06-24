@@ -22,6 +22,9 @@ body {
   font-family: "Montserrat", sans-serif;
   overflow-x: hidden;
 }
+body.menu-open {
+  overflow: hidden;
+}
 a {
   text-decoration: none;
   color: inherit;
@@ -610,8 +613,24 @@ body[dir="rtl"] .brand {
     flex-wrap: nowrap;
     white-space: normal;
   }
+  .header.menu-open {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow-y: auto;
+    z-index: 2000;
+    background: #050607;
+    padding: 24px 5% 40px;
+    align-content: start;
+  }
   .header.menu-open .nav {
     display: flex;
+    margin-top: 8px;
+  }
+  .header.menu-open .menu-toggle {
+    margin-top: 4px;
   }
   .nav a {
     font-size: 15px;

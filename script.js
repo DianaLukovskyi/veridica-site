@@ -17,12 +17,14 @@ if(header&&nav&&!header.querySelector(".menu-toggle")){
   btn.addEventListener("click",(e)=>{
     e.stopPropagation();
     const open=header.classList.toggle("menu-open");
+    document.body.classList.toggle("menu-open",open);
     btn.setAttribute("aria-expanded",open?"true":"false");
     btn.textContent=open?"✕":"☰";
   });
   document.addEventListener("click",(e)=>{
     if(!header.contains(e.target)){
       header.classList.remove("menu-open");
+      document.body.classList.remove("menu-open");
       btn.setAttribute("aria-expanded","false");
       btn.textContent="☰";
     }
