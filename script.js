@@ -4,6 +4,31 @@ function revealOnScroll(){revealElements.forEach((el)=>{if(el.getBoundingClientR
 window.addEventListener("load",()=>{revealOnScroll();const loader=document.querySelector(".page-loader");if(loader){setTimeout(()=>loader.classList.add("hide"),500);}});
 window.addEventListener("scroll", revealOnScroll);
 
+const header=document.querySelector(".header");
+const nav=header&&header.querySelector(".nav");
+if(header&&nav&&!header.querySelector(".menu-toggle")){
+  const btn=document.createElement("button");
+  btn.type="button";
+  btn.className="menu-toggle";
+  btn.setAttribute("aria-label","Menu");
+  btn.setAttribute("aria-expanded","false");
+  btn.textContent="☰";
+  nav.before(btn);
+  btn.addEventListener("click",(e)=>{
+    e.stopPropagation();
+    const open=header.classList.toggle("menu-open");
+    btn.setAttribute("aria-expanded",open?"true":"false");
+    btn.textContent=open?"✕":"☰";
+  });
+  document.addEventListener("click",(e)=>{
+    if(!header.contains(e.target)){
+      header.classList.remove("menu-open");
+      btn.setAttribute("aria-expanded","false");
+      btn.textContent="☰";
+    }
+  });
+}
+
 const consultationForm=document.querySelector(".consultation-form");
 if(consultationForm){
   consultationForm.addEventListener("submit",(e)=>{
