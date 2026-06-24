@@ -578,16 +578,17 @@ body[dir="rtl"] .brand {
 @media (max-width: 900px) {
   .header {
     display: grid;
-    grid-template-columns: 40px 1fr 40px;
+    grid-template-columns: 42px 1fr 42px;
     align-items: center;
     gap: 8px;
     padding: 8px 12px;
-    height: 68px;
-    max-height: 72px;
+    height: 72px;
+    max-height: 76px;
     min-height: unset;
   }
   .brand {
     grid-column: 2;
+    grid-row: 1;
     justify-self: center;
     flex: unset;
     min-width: 0;
@@ -600,17 +601,17 @@ body[dir="rtl"] .brand {
     max-width: 100%;
   }
   .brand h1 {
-    font-size: 19px;
-    letter-spacing: 4px;
+    font-size: 21px;
+    letter-spacing: 5px;
     white-space: nowrap;
   }
   .brand p {
     display: none;
   }
   .logo {
-    width: 38px;
-    height: 38px;
-    font-size: 24px;
+    width: 42px;
+    height: 42px;
+    font-size: 28px;
     flex-shrink: 0;
   }
   .logo:before {
@@ -626,16 +627,19 @@ body[dir="rtl"] .brand {
     align-items: center;
     justify-content: center;
     grid-column: 1;
+    grid-row: 1;
     justify-self: start;
+    align-self: center;
     flex-shrink: 0;
     background: transparent;
     border: 1px solid rgba(212, 162, 76, 0.45);
     color: var(--gold);
-    font-size: 15px;
+    font-size: 17px;
     line-height: 1;
     padding: 0;
-    width: 36px;
-    height: 36px;
+    margin: 0;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
     border-radius: 8px;
     font-family: inherit;
@@ -703,12 +707,12 @@ body[dir="rtl"] .brand {
   }
   body.menu-open .nav a {
     font-family: "Montserrat", sans-serif;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 500;
-    letter-spacing: 0.2px;
+    letter-spacing: 0.3px;
     text-transform: none;
-    padding: 11px 0;
-    line-height: 1.35;
+    padding: 12px 0;
+    line-height: 1.4;
     width: 100%;
     border-bottom: 1px solid rgba(212, 162, 76, 0.12);
     cursor: pointer;
@@ -787,7 +791,7 @@ body[dir="rtl"] .brand {
     }
   }
   .hero {
-    padding: 88px 7% 70px;
+    padding: 92px 7% 70px;
   }
   .hero-inner {
     width: 100%;
@@ -885,23 +889,26 @@ body[dir="rtl"] .brand {
 
 @media (max-width: 400px) {
   .header {
-    height: 64px;
-    max-height: 68px;
+    height: 68px;
+    max-height: 72px;
     padding: 8px 10px;
-    grid-template-columns: 36px 1fr 36px;
+    grid-template-columns: 38px 1fr 38px;
   }
   .brand h1 {
-    font-size: 16px;
-    letter-spacing: 3px;
+    font-size: 18px;
+    letter-spacing: 4px;
   }
   .logo {
-    width: 34px;
-    height: 34px;
-    font-size: 22px;
+    width: 38px;
+    height: 38px;
+    font-size: 24px;
   }
   .menu-toggle {
-    width: 34px;
-    height: 34px;
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+  }
+  body.menu-open .nav a {
     font-size: 14px;
   }
   body.menu-open .city-phone a {
